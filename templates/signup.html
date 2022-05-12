@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<!--{% load static%} とすることによってstaticファイルの所在をdjangoに知らせいている-->
+{% load static %}
+
+{% block customcss %}
+<!--以下のコードはbootstarpの参考にしたコードにおけるcssの読み込みの部分をとってきた-->
+<!--   {% static 'style.css' %} と書くことでstaticディレクトリの中のstyle.cssファイルを読み込むようになる  -->
+<link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
+{% block content %}
+<body class="text-center">
+    {{error}}
+    <main class="form-signin">
+      <form method="POST">{% csrf_token %}
+         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    
+        <div class="form-floating">
+            <!--djangoでhtmlからデータを取り出す際はnameというfielsをあたらに指定してあげなければならない-->
+          <input type="text" class="form-control" id="floatingInput" placeholder="Username" name = 'username'> 
+          <label for="floatingInput">User name</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name = 'password'>
+          <label for="floatingPassword">Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+      </form>
+    </main>
+ </body>
+ {% endblock content %}
